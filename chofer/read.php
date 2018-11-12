@@ -32,11 +32,11 @@ if($num>0){
             "updated" => $updated            
         );
  
-        array_push($choffer_arr["records"], $chofer_item);
+        array_push($chofer_arr["records"], $chofer_item);
     }
  
     http_response_code(200);
-    echo json_encode($products_arr);
+    echo json_encode($chofer_arr);
 }
  
 else{
@@ -46,7 +46,7 @@ else{
  
     // tell the user no products found
     echo json_encode(
-        array("message" => "No products found.")
+        array("message" => "No se encontraron choferes.")
     );
 }
 ?>

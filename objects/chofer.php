@@ -25,18 +25,15 @@ class Chofer{
     function read(){
         //hay que arreglar el query este
         $query = "SELECT
-                    st. as category_name, p.chofer_id, p.nombre, p.apellido, p.documento, p.email, p.vehiculo_id, p.sistema_id, p.created, p.updated
+                    st.nombre as servicio, v.patente as patente, p.chofer_id, p.nombre, p.apellido, p.documento, p.email, p.vehiculo_id, p.sistema_id, p.created, p.updated
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
-                        sistema_vehiculo sv
-                            ON p.sistema_id = sv.id
-                    LEFT JOIN
                         sistema_transporte st
-                            ON p.
+                            ON p.sistema_id = st.sistema_id
                     LEFT JOIN
                         vehiculo v
-                            ON p.vehiculo_id = v.patente
+                            ON p.vehiculo_id = v.vehiculo_id
                 ORDER BY
                     p.created DESC";
      
