@@ -29,7 +29,9 @@ if($num>0){
             "vehiculo_id" => $vehiculo_id,
             "sistema_id" => $sistema_id,
             "created" => $created,
-            "updated" => $updated            
+            "updated" => $updated,
+            "patente" => $patente,           
+            "servicio" => $servicio,           
         );
  
         array_push($chofer_arr["records"], $chofer_item);

@@ -25,7 +25,7 @@ class Chofer{
     function read(){
         //hay que arreglar el query este
         $query = "SELECT
-                    st.nombre as servicio, v.patente as patente, p.chofer_id, p.nombre, p.apellido, p.documento, p.email, p.vehiculo_id, p.sistema_id, p.created, p.updated
+                    p.chofer_id, p.nombre, p.apellido, p.documento, p.email, p.vehiculo_id, p.sistema_id, p.created, p.updated, st.nombre as servicio, v.patente as patente
                 FROM
                     " . $this->table_name . " p
                     LEFT JOIN
