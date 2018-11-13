@@ -93,11 +93,11 @@ class Chofer{
                         vehiculo v
                             ON p.vehiculo_id = v.vehiculo_id
                 WHERE
-                    p.id = ?
+                    p.chofer_id = ?
                 LIMIT
                     0,1";
     
-        $stmt = $this->conn->prepare( $query );
+        $stmt = $this->connection->prepare( $query );
 
         $stmt->bindParam(1, $this->chofer_id);
     

@@ -18,19 +18,19 @@ $chofer->chofer_id = isset($_GET['id']) ? $_GET['id'] : die();
 $chofer->readOne();
  
 if($chofer->nombre!=null){
-    // create array
+
     $chofer_arr = array(
-        "chofer_id" => $chofer_id,
-        "nombre" => $nombre,
-        "apellido" => $apellido,
-        "documento" => $documento,
-        "email" => $email,
-        "vehiculo_id" => $vehiculo_id,
-        "sistema_id" => $sistema_id,
-        "created" => $created,
-        "updated" => $updated,
-        "patente" => $patente,           
-        "servicio" => $servicio,   
+        "chofer_id" =>  $chofer->chofer_id,
+        "nombre" =>     $chofer->nombre,
+        "apellido" =>   $chofer->apellido,
+        "documento" =>  $chofer->documento,
+        "email" =>      $chofer->email,
+        "vehiculo_id" =>$chofer->vehiculo_id,
+        "sistema_id" => $chofer->sistema_id,
+        "created" =>    $chofer->created,
+        "updated" =>    $chofer->updated,
+        "patente" =>    $chofer->patente,           
+        "servicio" =>   $chofer->servicio   
     );
  
     http_response_code(200); 
