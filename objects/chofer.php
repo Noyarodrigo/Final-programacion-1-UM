@@ -104,9 +104,7 @@ class Chofer{
         $stmt->execute();
     
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
-    //creo que no haria falta mandar el id de el tipo de servicio porque ya le mando un campo servicio(que es el tipo de servicio ej Uber)
-    //asi que habria que ver si necesitas ver el id o con que sepas que es uber ya está bien, lo mismo con el id del auto, como solo puede
-    //manejar un auto directamente le estaba mandando la patente del auto que es mas comodo, pero tal vez necesite el id qcio.
+        
         $this->nombre = $fila['nombre'];
         $this->apellido = $fila['apellido'];
         $this->documento = $fila['documento'];
@@ -117,5 +115,52 @@ class Chofer{
         $this->updated = $fila['updated'];
         $this->patente = $fila['patente'];
         $this->servicio = $fila['servicio'];
+    /*creo que no haria falta mandar el id de el tipo de servicio porque ya le mando un campo servicio(que es el tipo de servicio ej Uber)
+    asi que habria que ver si necesitas ver el id o con que sepas que es uber ya está bien, lo mismo con el id del auto, como solo puede
+    manejar un auto directamente le estaba mandando la patente del auto que es mas comodo, pero tal vez necesite el id qcio.*/
+    }
+
+    function update(){
+ 
+        $query = "UPDATE
+                    " . $this->table_name . "
+                SET
+                apellido=:apellido,
+                nombre=:nombre,
+                documento=:documento,
+                email=:email, 
+                vehiculo_id=:vehiculo_id,
+                sistema_id=:sistema_id, 
+                updated=:updated
+                WHERE
+                    chofer_id = :chofer_id";
+     
+        $stmt = $this->connection->prepare($query);
+
+        $this->email=htmlspecialchars(strip_tags($this->email));
+        $this->nombre=htmlspecialchars(strip_tags($this->nombre));
+        //$this->created=htmlspecialchars(strip_tags($this->created));
+        $this->updated=htmlspecialchars(strip_tags($this->updated));
+        $this->apellido=htmlspecialchars(strip_tags($this->apellido));
+        $this->chofer_id=htmlspecialchars(strip_tags($this->chofer_id));
+        $this->documento=htmlspecialchars(strip_tags($this->documento));
+        $this->sistema_id=htmlspecialchars(strip_tags($this->sistema_id));
+        $this->vehiculo_id=htmlspecialchars(strip_tags($this->vehiculo_id));
+        
+        $stmt->bindParam(":email", $this->email);
+        $stmt->bindParam(":nombre", $this->nombre);
+        $stmt->bindParam(":updated", $this->updated);
+        //$stmt->bindParam(":created", $this->created);
+        $stmt->bindParam(":apellido", $this->apellido);
+        $stmt->bindParam(":chofer_id", $this->chofer_id);
+        $stmt->bindParam(":documento", $this->documento);
+        $stmt->bindParam(":sistema_id", $this->sistema_id);
+        $stmt->bindParam(":vehiculo_id", $this->vehiculo_id);
+     
+        if($stmt->execute()){
+            return true;
+        }
+     
+        return false;
     }
 }
