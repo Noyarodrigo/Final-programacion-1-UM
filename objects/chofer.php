@@ -182,4 +182,36 @@ class Chofer{
         return false;
          
     }
+
+    //esto tambien es multiuso
+    function search($keywords){
+ 
+        $query = "SELECT
+                    p.chofer_id, p.nombre, p.apellido, p.documento, p.email, p.vehiculo_id, p.sistema_id, p.created, p.updated, st.nombre as servicio, v.patente as patente
+                FROM
+                    " . $this->table_name . " p
+                    LEFT JOIN
+                        sistema_transporte st
+                            ON p.sistema_id = st.sistema_id
+                    LEFT JOIN
+                        vehiculo v
+                            ON p.vehiculo_id = v.vehiculo_id
+                WHERE
+                    p.nombre LIKE ? OR p.apellido LIKE ? OR p.documento LIKE ?
+                ORDER BY
+                    p.created DESC";
+     
+        $stmt = $this->connection->prepare($query);
+     
+        $keywords=htmlspecialchars(strip_tags($keywords));
+        $keywords = "%{$keywords}%";
+     
+        $stmt->bindParam(1, $keywords);
+        $stmt->bindParam(2, $keywords);
+        $stmt->bindParam(3, $keywords);
+     
+        $stmt->execute();
+     
+        return $stmt;
+    }
 }
