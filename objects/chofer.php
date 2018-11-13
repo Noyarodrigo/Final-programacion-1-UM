@@ -7,7 +7,7 @@ class Chofer{
     // table name
     private $table_name = "chofer";
 
-    // table columns
+    //columns
     public $chofer_id;
     public $apellido;
     public $nombre;
@@ -162,5 +162,24 @@ class Chofer{
         }
      
         return false;
+    }
+    
+    //Esta deberia servir para todas las tablas porque sólo pide id, le cambiamos chofer_id por sistema_id etc.
+    function delete(){
+ 
+        $query = "DELETE FROM " . $this->table_name . " WHERE chofer_id = ?";
+
+        $stmt = $this->connection->prepare($query);
+     
+        $this->chofer_id=htmlspecialchars(strip_tags($this->chofer_id));
+     
+        $stmt->bindParam(1, $this->chofer_id);
+     
+        if($stmt->execute()){
+            return true;
+        }
+     
+        return false;
+         
     }
 }
