@@ -79,4 +79,43 @@ class Chofer{
         return false;
          
     }
+
+    function readOne(){
+ 
+        $query = "SELECT
+                    p.chofer_id, p.nombre, p.apellido, p.documento, p.email, p.vehiculo_id, p.sistema_id, p.created, p.updated, st.nombre as servicio, v.patente as patente
+                FROM
+                    " . $this->table_name . " p
+                    LEFT JOIN
+                        sistema_transporte st
+                            ON p.sistema_id = st.sistema_id
+                    LEFT JOIN
+                        vehiculo v
+                            ON p.vehiculo_id = v.vehiculo_id
+                WHERE
+                    p.id = ?
+                LIMIT
+                    0,1";
+    
+        $stmt = $this->conn->prepare( $query );
+
+        $stmt->bindParam(1, $this->chofer_id);
+    
+        $stmt->execute();
+    
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+    //creo que no haria falta mandar el id de el tipo de servicio porque ya le mando un campo servicio(que es el tipo de servicio ej Uber)
+    //asi que habria que ver si necesitas ver el id o con que sepas que es uber ya está bien, lo mismo con el id del auto, como solo puede
+    //manejar un auto directamente le estaba mandando la patente del auto que es mas comodo, pero tal vez necesite el id qcio.
+        $this->nombre = $fila['nombre'];
+        $this->apellido = $fila['apellido'];
+        $this->documento = $fila['documento'];
+        $this->email = $fila['email'];
+        $this->sistema_id = $fila['sistema_id'];
+        $this->vehiculo_id = $fila['vehiculo_id'];
+        $this->created = $fila['created'];
+        $this->updated = $fila['updated'];
+        $this->patente = $fila['patente'];
+        $this->servicio = $fila['servicio'];
+    }
 }
