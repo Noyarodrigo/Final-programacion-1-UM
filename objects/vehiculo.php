@@ -72,15 +72,9 @@ class Vehiculo{
     function readOne(){
  
         $query = "SELECT
-                    p.vehiculo_id, p.anho_patente, p.patente, p.anho_fabricacion, p.marca, p.vehiculo_id, p.modelo, p.created, p.updated, st.anho_patente as servicio, v.patente as patente
+                    p.vehiculo_id, p.patente, p.anho_patente, p.anho_fabricacion, p.marca, p.modelo, p.created, p.updated
                 FROM
                     " . $this->table_name . " p
-                    LEFT JOIN
-                        sistema_transporte st
-                            ON p.modelo = st.modelo
-                    LEFT JOIN
-                        vehiculo v
-                            ON p.vehiculo_id = v.vehiculo_id
                 WHERE
                     p.vehiculo_id = ?
                 LIMIT
@@ -102,11 +96,6 @@ class Vehiculo{
         $this->vehiculo_id = $fila['vehiculo_id'];
         $this->created = $fila['created'];
         $this->updated = $fila['updated'];
-        $this->patente = $fila['patente'];
-        $this->servicio = $fila['servicio'];
-    /*creo que no haria falta mandar el id de el tipo de servicio porque ya le mando un campo servicio(que es el tipo de servicio ej Uber)
-    asi que habria que ver si necesitas ver el id o con que sepas que es uber ya está bien, lo mismo con el id del auto, como solo puede
-    manejar un auto directamente le estaba mandando la patente del auto que es mas comodo, pero tal vez necesite el id qcio.*/
     }
 
     function update(){
