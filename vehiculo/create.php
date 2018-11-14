@@ -7,34 +7,33 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
 include_once '../config/database.php'; 
-include_once '../objects/chofer.php';
+include_once '../objects/vehiculo.php';
  
 $database = new Database();
 $db = $database->getConnection();
  
-$chofer = new Chofer($db);
+$vehiculo = new Vehiculo($db);
  
 $data = json_decode(file_get_contents("php://input"));
  
 if(
-    !empty($data->nombre) &&
-    !empty($data->apellido) &&
-    !empty($data->documento) &&
-    !empty($data->email) &&
-    !empty($data->sistema_id) &&
-    !empty($data->vehiculo_id)
-){
+    !empty($data->patente) &&
+    !empty($data->anho_patente) &&
+    !empty($data->anho_fabricacion) &&
+    !empty($data->marca) &&
+    !empty($data->modelo)
+)
+{
  
-    $chofer->nombre = $data->nombre;
-    $chofer->apellido = $data->apellido;
-    $chofer->documento = $data->documento;
-    $chofer->email = $data->email;
-    $chofer->sistema_id = $data->sistema_id;
-    $chofer->vehiculo_id = $data->vehiculo_id;
-    $chofer->created = date('Y-m-d H:i:s');
-    $chofer->updated = date('Y-m-d H:i:s');
+    $vehiculo->patente = $data->patente;
+    $vehiculo->anho_patente = $data->anho_patente;
+    $vehiculo->anho_fabricacion = $data->anho_fabricacion;
+    $vehiculo->marca = $data->marca;
+    $vehiculo->modelo = $data->modelo;
+    $vehiculo->created = date('Y-m-d H:i:s');
+    $vehiculo->updated = date('Y-m-d H:i:s');
      
-    if($chofer->create()){
+    if($vehiculo->create()){
  
         http_response_code(201);
         echo json_encode(array("message" => "Agregado correctamente."));

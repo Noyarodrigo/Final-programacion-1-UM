@@ -13,6 +13,7 @@ class Vehiculo{
     public $anho_patente;
     public $anho_fabricacion;
     public $marca;
+    public $modelo;
     public $created;
     public $updated; 
 
@@ -29,10 +30,8 @@ class Vehiculo{
                 ORDER BY
                     p.created DESC";
      
-        // prepare query statement
         $stmt = $this->connection->prepare($query);
      
-        // execute query
         $stmt->execute();
      
         return $stmt;
@@ -60,7 +59,6 @@ class Vehiculo{
         $stmt->bindParam(":updated", $this->updated);
         $stmt->bindParam(":created", $this->created);
         $stmt->bindParam(":patente", $this->patente);
-        $stmt->bindParam(":vehiculo_id", $this->vehiculo_id);
         $stmt->bindParam(":anho_patente", $this->anho_patente);
         $stmt->bindParam(":anho_fabricacion", $this->anho_fabricacion);
      
