@@ -107,7 +107,6 @@ class Vehiculo{
                 anho_patente=:anho_patente,
                 anho_fabricacion=:anho_fabricacion,
                 marca=:marca, 
-                vehiculo_id=:vehiculo_id,
                 modelo=:modelo, 
                 updated=:updated
                 WHERE
@@ -116,24 +115,21 @@ class Vehiculo{
         $stmt = $this->connection->prepare($query);
 
         $this->marca=htmlspecialchars(strip_tags($this->marca));
-        $this->anho_patente=htmlspecialchars(strip_tags($this->anho_patente));
-        //$this->created=htmlspecialchars(strip_tags($this->created));
+        $this->modelo=htmlspecialchars(strip_tags($this->modelo));
         $this->updated=htmlspecialchars(strip_tags($this->updated));
         $this->patente=htmlspecialchars(strip_tags($this->patente));
         $this->vehiculo_id=htmlspecialchars(strip_tags($this->vehiculo_id));
+        $this->anho_patente=htmlspecialchars(strip_tags($this->anho_patente));
         $this->anho_fabricacion=htmlspecialchars(strip_tags($this->anho_fabricacion));
-        $this->modelo=htmlspecialchars(strip_tags($this->modelo));
-        $this->vehiculo_id=htmlspecialchars(strip_tags($this->vehiculo_id));
         
         $stmt->bindParam(":marca", $this->marca);
-        $stmt->bindParam(":anho_patente", $this->anho_patente);
+        $stmt->bindParam(":modelo", $this->modelo);
         $stmt->bindParam(":updated", $this->updated);
-        //$stmt->bindParam(":created", $this->created);
         $stmt->bindParam(":patente", $this->patente);
         $stmt->bindParam(":vehiculo_id", $this->vehiculo_id);
-        $stmt->bindParam(":anho_fabricacion", $this->anho_fabricacion);
-        $stmt->bindParam(":modelo", $this->modelo);
         $stmt->bindParam(":vehiculo_id", $this->vehiculo_id);
+        $stmt->bindParam(":anho_patente", $this->anho_patente);
+        $stmt->bindParam(":anho_fabricacion", $this->anho_fabricacion);
      
         if($stmt->execute()){
             return true;
@@ -142,7 +138,6 @@ class Vehiculo{
         return false;
     }
     
-    //Esta deberia servir para todas las tablas porque sólo pide id, le cambiamos vehiculo_id por modelo etc.
     function delete(){
  
         $query = "DELETE FROM " . $this->table_name . " WHERE vehiculo_id = ?";

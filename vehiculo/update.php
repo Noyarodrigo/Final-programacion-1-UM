@@ -6,31 +6,30 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
 include_once '../config/database.php';
-include_once '../objects/chofer.php';
+include_once '../objects/vehiculo.php';
  
 $database = new Database();
 $db = $database->getConnection();
  
-$chofer = new Chofer($db);
+$vehiculo = new Vehiculo($db);
  
 $data = json_decode(file_get_contents("php://input"));
 
-$chofer->chofer_id = $data->chofer_id;
-$chofer->nombre = $data->nombre;
-$chofer->apellido = $data->apellido;
-$chofer->documento = $data->documento;
-$chofer->email = $data->email;
-$chofer->sistema_id = $data->sistema_id;
-$chofer->vehiculo_id = $data->vehiculo_id;
-//$chofer->created = date('Y-m-d H:i:s');
-$chofer->updated = date('Y-m-d H:i:s');
-if($chofer->update()){
+$vehiculo->vehiculo_id = $data->vehiculo_id;
+$vehiculo->patente = $data->patente;
+$vehiculo->anho_patente = $data->anho_patente;
+$vehiculo->anho_fabricacion = $data->anho_fabricacion;
+$vehiculo->marca = $data->marca;
+$vehiculo->modelo = $data->modelo;
+$vehiculo->updated = date('Y-m-d H:i:s');
+
+if($vehiculo->update()){
     http_response_code(200);
-    echo json_encode(array("message" => "chofer modificado Correctamente."));
+    echo json_encode(array("message" => "vehiculo modificado Correctamente."));
 }
  
 else{
     http_response_code(503);
-    echo json_encode(array("message" => "No se pudo modificar al chofer."));
+    echo json_encode(array("message" => "No se pudo modificar al vehiculo."));
 }
 ?>
