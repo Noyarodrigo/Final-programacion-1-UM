@@ -157,19 +157,15 @@ class Vehiculo{
     }
 
     function search($keywords){
- 
+        //p.vehiculo_id, p.anho_patente, p.patente, p.anho_fabricacion, p.marca, p.modelo, p.created, p.updated
+        //Select opcional
         $query = "SELECT
-                    p.vehiculo_id, p.anho_patente, p.patente, p.anho_fabricacion, p.marca, p.vehiculo_id, p.modelo, p.created, p.updated, st.anho_patente as servicio, v.patente as patente
+                    *
                 FROM
                     " . $this->table_name . " p
-                    LEFT JOIN
-                        sistema_transporte st
-                            ON p.modelo = st.modelo
-                    LEFT JOIN
-                        vehiculo v
-                            ON p.vehiculo_id = v.vehiculo_id
+                   
                 WHERE
-                    p.anho_patente LIKE ? OR p.patente LIKE ? OR p.anho_fabricacion LIKE ?
+                    p.marca LIKE ? OR p.patente LIKE ? OR p.modelo LIKE ? OR p.anho_fabricacion LIKE ?
                 ORDER BY
                     p.created DESC";
      
@@ -181,6 +177,7 @@ class Vehiculo{
         $stmt->bindParam(1, $keywords);
         $stmt->bindParam(2, $keywords);
         $stmt->bindParam(3, $keywords);
+        $stmt->bindParam(4, $keywords);
      
         $stmt->execute();
      
