@@ -6,26 +6,26 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
 include_once '../config/database.php';
-include_once '../objects/chofer.php';
+include_once '../objects/vehiculo.php';
  
 $database = new Database();
 $db = $database->getConnection();
  
-$chofer = new Chofer($db);
+$vehiculo = new Vehiculo($db);
  
 $data = json_decode(file_get_contents("php://input"));
  
-$chofer->chofer_id = $data->chofer_id;
+$vehiculo->vehiculo_id = $data->vehiculo_id;
  
-if($chofer->delete()){
+if($vehiculo->delete()){
  
     http_response_code(200);
-    echo json_encode(array("message" => "Chofer eliminado."));
+    echo json_encode(array("message" => "vehiculo eliminado."));
 }
  
 else{
  
     http_response_code(503);
-    echo json_encode(array("message" => "Error al eliminar al chofer."));
+    echo json_encode(array("message" => "Error al eliminar el vehiculo."));
 }
 ?>

@@ -156,7 +156,6 @@ class Vehiculo{
          
     }
 
-    //esto tambien es multiuso
     function search($keywords){
  
         $query = "SELECT
