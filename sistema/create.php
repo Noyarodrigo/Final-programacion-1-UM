@@ -7,33 +7,27 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
 include_once '../config/database.php'; 
-include_once '../objects/vehiculo.php';
+include_once '../objects/sistema.php';
  
 $database = new Database();
 $db = $database->getConnection();
  
-$vehiculo = new Vehiculo($db);
+$sistema = new Sistema($db);
  
 $data = json_decode(file_get_contents("php://input"));
  
 if(
-    !empty($data->patente) &&
-    !empty($data->anho_patente) &&
-    !empty($data->anho_fabricacion) &&
-    !empty($data->marca) &&
-    !empty($data->modelo)
+    !empty($data->nombre) &&
+    !empty($data->pais_procedencia) 
 )
 {
  
-    $vehiculo->patente = $data->patente;
-    $vehiculo->anho_patente = $data->anho_patente;
-    $vehiculo->anho_fabricacion = $data->anho_fabricacion;
-    $vehiculo->marca = $data->marca;
-    $vehiculo->modelo = $data->modelo;
-    $vehiculo->created = date('Y-m-d H:i:s');
-    $vehiculo->updated = date('Y-m-d H:i:s');
+    $sistema->nombre = $data->nombre;
+    $sistema->pais_procedencia = $data->pais_procedencia;
+    $sistema->created = date('Y-m-d H:i:s');
+    $sistema->updated = date('Y-m-d H:i:s');
      
-    if($vehiculo->create()){
+    if($sistema->create()){
  
         http_response_code(201);
         echo json_encode(array("message" => "Agregado correctamente."));
