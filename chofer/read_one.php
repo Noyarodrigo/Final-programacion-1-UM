@@ -1,4 +1,12 @@
 <?php
+if (session_start()) {
+    if ($_SESSION[habilitado]!=1) {
+        //a la casa a loguearse
+        echo "<h3>Debe iniciar sesion</h3>";
+        echo "<a href=\"http://localhost/prog1final/login/home.php\">Ingresar</a>";
+        die();
+    }
+}
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
 header("Access-Control-Allow-Methods: GET");
