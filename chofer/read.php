@@ -1,4 +1,12 @@
 <?php
+if (session_start()) {
+    if ($_SESSION[habilitado]!=1) {
+      //a la casa a loguearse
+      header("location: http://localhost/prog1final/login/home.php");
+    }
+}else{
+    die();
+}
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
  

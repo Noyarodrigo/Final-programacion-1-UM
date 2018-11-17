@@ -23,7 +23,7 @@ class Chofer{
     }
 
     function read(){
-        //hay que arreglar el query este
+
         $query = "SELECT
                     p.chofer_id, p.nombre, p.apellido, p.documento, p.email, p.vehiculo_id, p.sistema_id, p.created, p.updated, st.nombre as servicio, v.patente as patente
                 FROM
@@ -37,10 +37,8 @@ class Chofer{
                 ORDER BY
                     p.created DESC";
      
-        // prepare query statement
         $stmt = $this->connection->prepare($query);
      
-        // execute query
         $stmt->execute();
      
         return $stmt;
