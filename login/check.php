@@ -40,12 +40,7 @@ if($login->nombre!=null && $login->tipo!=null){
      http_response_code(200);
      //jwt
     $jwt = JWT::encode($token, $key);
-    echo json_encode(
-            array(
-                "message" => "Inicio correcto.",
-                "jwt" => $jwt
-            )
-        );
+    echo "Su token de ingreso es: $jwt";    
 }
  
 else{
