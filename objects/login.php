@@ -9,6 +9,7 @@ class Login{
 
     //columns
     public $nombre;
+    public $apellido;
     public $tipo;
     public $id;  
 
@@ -35,6 +36,7 @@ class Login{
     
         $fila = $stmt->fetch(PDO::FETCH_ASSOC);
         $this->nombre = $fila['nombre'];
+        $this->apellido= $fila['apellido'];
         $this->tipo= $fila['tipo'];
         $this->id= $fila['usuario_id'];        
     }

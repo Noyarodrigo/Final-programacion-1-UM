@@ -9,10 +9,10 @@ include_once '../config/database.php';
 include_once '../objects/login.php';
  
 include_once '../config/core.php';
-include_once '/php-jwt/src/BeforeValidException.php';
-include_once '/php-jwt/src/ExpiredException.php';
-include_once '/php-jwt/src/SignatureInvalidException.php';
-include_once '/php-jwt/src/JWT.php';
+include_once '../php-jwt/src/BeforeValidException.php';
+include_once '../php-jwt/src/ExpiredException.php';
+include_once '../php-jwt/src/SignatureInvalidException.php';
+include_once '../php-jwt/src/JWT.php';
 use \Firebase\JWT\JWT;
 
 $database = new Database();
@@ -33,11 +33,11 @@ if($login->nombre!=null && $login->tipo!=null){
         "data" => array(
             "id" => $login->id,
             "nombre" => $login->nombre,
+            "apellido"=> $login->apellido,
             "tipo" => $login->tipo,
         )
      );
      http_response_code(200);
-     print_r($token);
      //jwt
     $jwt = JWT::encode($token, $key);
     echo json_encode(
