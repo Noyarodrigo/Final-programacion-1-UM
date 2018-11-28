@@ -1,5 +1,5 @@
 <?php
-class auditoria{
+class Auditoria{
 
     // Connection instance
     private $connection;
@@ -8,8 +8,7 @@ class auditoria{
     private $table_name = "auditoria";
 
     //columns
-    public $auditoria_id;
-    public $user;
+    public $usuario;
     public $response_time;
     public $endpoint;
     public $created;
@@ -18,7 +17,7 @@ class auditoria{
         $this->connection = $connection;
     }
 
-    function read(){
+    /*function read(){
         $query = "SELECT
                         *
                 FROM
@@ -32,27 +31,28 @@ class auditoria{
         $stmt->execute();
      
         return $stmt;
-    }
+    }*/
 
     function create(){
- 
+
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                    user=:user, response_time=:response_time, endpoint=:endpoint, created=:created";
+                    usuario=:usuario, response_time=:response_time, endpoint=:endpoint, created=:created";
      
         $stmt = $this->connection->prepare($query);
 
-        $this->user=htmlspecialchars(strip_tags($this->user));
+        $this->usuario=htmlspecialchars(strip_tags($this->usuario));
         $this->created=htmlspecialchars(strip_tags($this->created));
         $this->endpoint=htmlspecialchars(strip_tags($this->endpoint));
         $this->response_time=htmlspecialchars(strip_tags($this->response_time));
         
-        $stmt->bindParam(":user", $this->user);
+        echo "\n QUERY:   $query";
+        $stmt->bindParam(":usuario", $this->usuario);
         $stmt->bindParam(":created", $this->created);
         $stmt->bindParam(":endpoint", $this->endpoint);
         $stmt->bindParam(":response_time", $this->response_time);
-     
+        
         if($stmt->execute()){
             return true;
         }
@@ -60,8 +60,8 @@ class auditoria{
          
     }
 
-    function search($keywords){
-        //p.auditoria_id, p.response_time, p.user, p.endpoint, p.user, p.response_time, p.created, p.endpoint
+    /*function search($keywords){
+        //p.auditoria_id, p.response_time, p.usuario, p.endpoint, p.usuario, p.response_time, p.created, p.endpoint
         //Select opcional
         $query = "SELECT
                     *
@@ -69,7 +69,7 @@ class auditoria{
                     " . $this->table_name . " p
                    
                 WHERE
-                    p.user LIKE ? OR p.user LIKE ? OR p.response_time LIKE ? OR p.endpoint LIKE ?
+                    p.usuario LIKE ? OR p.usuario LIKE ? OR p.response_time LIKE ? OR p.endpoint LIKE ?
                 ORDER BY
                     p.created DESC";
      
@@ -86,5 +86,5 @@ class auditoria{
         $stmt->execute();
      
         return $stmt;
-    }
+    }*/
 }
