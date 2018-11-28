@@ -1,13 +1,10 @@
 <?php
 class Chofer{
 
-    // Connection instance
     private $connection;
 
-    // table name
     private $table_name = "chofer";
 
-    //columns
     public $chofer_id;
     public $apellido;
     public $nombre;

@@ -1,13 +1,10 @@
 <?php
 class Auditoria{
 
-    // Connection instance
     private $connection;
 
-    // table name
     private $table_name = "auditoria";
 
-    //columns
     public $usuario;
     public $response_time;
     public $endpoint;

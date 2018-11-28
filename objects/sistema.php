@@ -1,13 +1,10 @@
 <?php
 class sistema{
 
-    // Connection instance
     private $connection;
 
-    // table name
     private $table_name = "sistema_transporte";
 
-    //columns
     public $sistema_id;
     public $nombre;
     public $pais_procedencia;
@@ -19,8 +16,8 @@ class sistema{
     }
 
     function read(){
-        //hay que arreglar el query este
-        $query = "SELECT
+
+                $query = "SELECT
                     *
                 FROM
                     " . $this->table_name . " 
@@ -28,10 +25,8 @@ class sistema{
                 ORDER BY
                     created DESC";
      
-        // prepare query statement
         $stmt = $this->connection->prepare($query);
      
-        // execute query
         $stmt->execute();
      
         return $stmt;

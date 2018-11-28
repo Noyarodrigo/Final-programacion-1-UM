@@ -54,7 +54,7 @@ if($jwt){
             $auditoria->usuario= $usuario;
             $auditoria->created = date('Y-m-d H:i:s');
             //endpoint hay que cambiarlo para cada funcion seria el url de la pagina
-            $auditoria->endpoint= "localhost/prog1final/chofer/delete.php";
+            $auditoria->endpoint= "localhost/prog1final/chofer/update.php";
             //agregar auditoria
             $auditoria->create();
 

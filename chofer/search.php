@@ -1,5 +1,7 @@
 <?php
 
+$time1 = microtime(true);
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -64,7 +66,16 @@ if($jwt){
         
                 array_push($chofer_arr["records"], $chofer_item);
             }
-        
+            
+            $time2= round(((microtime(true) - $time1)*1000), 2);
+            $auditoria->response_time= $time2;            
+            $auditoria->usuario= $usuario;
+            $auditoria->created = date('Y-m-d H:i:s');
+            //endpoint hay que cambiarlo para cada funcion seria el url de la pagina
+            $auditoria->endpoint= "localhost/prog1final/chofer/search.php";
+            //agregar auditoria
+            $auditoria->create();
+
             http_response_code(200);
             echo json_encode($chofer_arr);
         }
