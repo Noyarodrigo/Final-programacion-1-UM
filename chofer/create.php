@@ -35,7 +35,6 @@ if($jwt){
         $chofer->vehiculo_id = $data->vehiculo_id;
         $chofer->created = date('Y-m-d H:i:s');
         $chofer->updated = date('Y-m-d H:i:s');
-        print_r($chofer);
     }
  
     catch (Exception $e){
