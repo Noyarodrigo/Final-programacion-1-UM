@@ -49,12 +49,12 @@ if($jwt){
 
         if($chofer->update()){
 
-            $time2= round(((microtime(true) - $time1)*1000), 2);
-            $auditoria->response_time= $time2;            
             $auditoria->usuario= $usuario;
             $auditoria->created = date('Y-m-d H:i:s');
             //endpoint hay que cambiarlo para cada funcion seria el url de la pagina
             $auditoria->endpoint= "localhost/prog1final/chofer/update.php";
+            $time2= round(((microtime(true) - $time1)*1000), 2);
+            $auditoria->response_time= $time2;            
             //agregar auditoria
             $auditoria->create();
 
