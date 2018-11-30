@@ -172,7 +172,37 @@ if($jwt){
                     echo json_encode(array("message" => "Error al eliminar al chofer."));
                 }
                 break;
-            
+            case "PUT":
+                
+                $chofer->chofer_id = $data->chofer_id;
+                $chofer->nombre = $data->nombre;
+                $chofer->apellido = $data->apellido;
+                $chofer->documento = $data->documento;
+                $chofer->email = $data->email;
+                $chofer->sistema_id = $data->sistema_id;
+                $chofer->vehiculo_id = $data->vehiculo_id;
+                $chofer->updated = date('Y-m-d H:i:s');
+        
+                if($chofer->update()){
+        
+                    $auditoria->usuario= $usuario;
+                    $auditoria->created = date('Y-m-d H:i:s');
+                    //endpoint hay que cambiarlo para cada funcion seria el url de la pagina
+                    $auditoria->endpoint= "localhost/prog1final/chofer/update.php";
+                    $time2= round(((microtime(true) - $time1)*1000), 2);
+                    $auditoria->response_time= $time2;            
+                    //agregar auditoria
+                    $auditoria->create();
+        
+                    http_response_code(200);
+                    echo json_encode(array("message" => "chofer modificado Correctamente."));
+                }
+                
+                else{
+                    http_response_code(503);
+                    echo json_encode(array("message" => "No se pudo modificar al chofer."));
+                }
+                break;
         }
             
             
