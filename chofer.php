@@ -49,6 +49,7 @@ if($jwt){
         switch ($_SERVER['REQUEST_METHOD']){
 
             case "POST":
+
                 $chofer->nombre = $data->nombre;
                 $chofer->apellido = $data->apellido;
                 $chofer->documento = $data->documento;
@@ -146,9 +147,32 @@ if($jwt){
                     );
                 }
                 break;
-
                 
-        
+            
+            case "DELETE":
+
+                $chofer->chofer_id = $data->chofer_id;
+                if($chofer->delete()){
+                    //agrega una entrada a la tabla de auditoria cuando todo está correcto
+                    $time2= round(((microtime(true) - $time1)*1000), 2);
+                    $auditoria->response_time= $time2;            
+                    $auditoria->usuario= $usuario;
+                    $auditoria->created = date('Y-m-d H:i:s');
+                    //endpoint hay que cambiarlo para cada funcion seria el url de la pagina
+                    $auditoria->endpoint= "localhost/prog1final/chofer/delete.php";
+                    //agregar auditoria
+                    $auditoria->create();
+                
+                    http_response_code(200);
+                    echo json_encode(array("message" => "Chofer eliminado."));
+                }      
+                else{
+                
+                    http_response_code(503);
+                    echo json_encode(array("message" => "Error al eliminar al chofer."));
+                }
+                break;
+            
         }
             
             
