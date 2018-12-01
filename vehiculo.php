@@ -49,7 +49,7 @@ if($jwt){
 
         switch ($_SERVER['REQUEST_METHOD']){
             
-            //CREATE
+// C        CREATE
             case "POST":
                 if(
                     !empty($data->patente) &&
@@ -89,7 +89,7 @@ if($jwt){
                 }
                 break;
             
-            //READ
+// R        READ
             case "GET":
                 $stmt = $vehiculo->read();
                 $num = $stmt->rowCount();
@@ -137,8 +137,9 @@ if($jwt){
                 }
                 break;
 
-            //UPDATE
-            /*case "PUT":
+// U        UPDATE
+            case "PUT":
+
                 $vehiculo->vehiculo_id = $data->vehiculo_id;
                 $vehiculo->patente = $data->patente;
                 $vehiculo->anho_patente = $data->anho_patente;
@@ -166,8 +167,9 @@ if($jwt){
                     http_response_code(503);
                     echo json_encode(array("message" => "No se pudo modificar al vehiculo."));
                 }
-                break;/*
+                break;
 
+            //DELETE
             /*case "DELETE":
                 if($vehiculo->delete()){
             
