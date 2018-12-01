@@ -20,7 +20,7 @@ use \Firebase\JWT\JWT;
 //incluye las clases necesarias
 include_once './config/database.php'; 
 include_once './objects/auditoria.php';
-include_once './objects/chofer.php';
+include_once './objects/vehiculo.php';
 
 //conexiones
 $database = new Database();
@@ -29,7 +29,8 @@ $db = $database->getConnection();
 
 //crear objetos
 $auditoria= new Auditoria($dbauditoria);
-$chofer = new Chofer($db);
+$vehiculo = new Vehiculo($db);
+
 
 //decodificar json y obtener el token
 $data = json_decode(file_get_contents("php://input"));
@@ -48,7 +49,7 @@ if($jwt){
 
         switch ($_SERVER['REQUEST_METHOD']){
             
-            /*case "POST":
+            case "POST":
                 if(
                     !empty($data->patente) &&
                     !empty($data->anho_patente) &&
@@ -85,7 +86,7 @@ if($jwt){
                         echo json_encode(array("message" => "No se pudo agregar."));
                     }
                 }
-                break;*/
+                break;
 
             /*case "GET":
                 $stmt = $vehiculo->read();
