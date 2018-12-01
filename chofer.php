@@ -172,6 +172,7 @@ if($jwt){
                     echo json_encode(array("message" => "Error al eliminar al chofer."));
                 }
                 break;
+
             case "PUT":
                 
                 $chofer->chofer_id = $data->chofer_id;
@@ -201,6 +202,58 @@ if($jwt){
                 else{
                     http_response_code(503);
                     echo json_encode(array("message" => "No se pudo modificar al chofer."));
+                }
+                break;
+
+            case "PROPFIND":
+                
+                $keywords=isset($_GET["buscar"]) ? $_GET["buscar"] : "";
+                $stmt = $chofer->search($keywords);
+                $num = $stmt->rowCount();
+                if($num>0){
+            
+                    $chofer_arr=array();
+                    $chofer_arr["records"]=array();
+                
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        
+                        extract($row);
+                        $chofer_item=array(
+                            "chofer_id" => $chofer_id,
+                            "nombre" => $nombre,
+                            "apellido" => $apellido,
+                            "documento" => $documento,
+                            "email" => $email,
+                            "vehiculo_id" => $vehiculo_id,
+                            "sistema_id" => $sistema_id,
+                            "created" => $created,
+                            "updated" => $updated,
+                            "patente" => $patente,           
+                            "servicio" => $servicio,           
+                        );
+                
+                        array_push($chofer_arr["records"], $chofer_item);
+                    }
+                    
+                    $time2= round(((microtime(true) - $time1)*1000), 2);
+                    $auditoria->response_time= $time2;            
+                    $auditoria->usuario= $usuario;
+                    $auditoria->created = date('Y-m-d H:i:s');
+                    //endpoint hay que cambiarlo para cada funcion seria el url de la pagina
+                    $auditoria->endpoint= "localhost/prog1final/chofer/search.php";
+                    //agregar auditoria
+                    $auditoria->create();
+        
+                    http_response_code(200);
+                    echo json_encode($chofer_arr);
+                }
+        
+                else{
+        
+                    http_response_code(404);
+                    echo json_encode(
+                        array("message" => "No se encontró ningún chofer.")
+                    );
                 }
                 break;
         }
