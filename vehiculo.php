@@ -169,8 +169,10 @@ if($jwt){
                 }
                 break;
 
-            //DELETE
-            /*case "DELETE":
+// D        DELETE
+            case "DELETE":
+                
+                $vehiculo->vehiculo_id = $data->vehiculo_id;
                 if($vehiculo->delete()){
             
                     $time2= round(((microtime(true) - $time1)*1000), 2);
@@ -191,7 +193,7 @@ if($jwt){
                     http_response_code(503);
                     echo json_encode(array("message" => "Error al eliminar el vehiculo."));
                 }
-                break;*/
+                break;
         }
 
     }catch (Exception $e){
