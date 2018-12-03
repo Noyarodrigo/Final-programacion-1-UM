@@ -12,22 +12,24 @@ $bd="transporte";
 $servidor="localhost";
 $conexionPDO= new PDO("mysql:host=$servidor;dbname=$bd;charset=UTF8","$usuario","$clave");
 
-$fi=isset($_GET["fi"]) ? $_GET["fi"] : "";
-$ff=isset($_GET["ff"]) ? $_GET["ff"] : "";
+$fi=isset($_POST["fi"]) ? $_POST["fi"] : "";
+$ff=isset($_POST["ff"]) ? $_POST["ff"] : "";
 
-if (isset($fi) && isset($ff)) {
+if ( $fi!="" && $ff!="") {
     
-    $sql="select * from auditoria where created between $fi and $ff";
+    $sql="select * from auditoria where created between \"$fi\" and \"$ff\"";
     
 }else{
+
     $sql="select * from auditoria ";
+
 }
 
-echo "<div> Auditoria </div>";
 $ejecucionSQLPDO=$conexionPDO->prepare($sql);
 $ejecucionSQLPDO->execute();
+echo "<div> Auditoria </div>";
 echo "<table border='1'>";
-echo"<tr> <td>ID</td> <td>Nombre</td> <td>Apellido</td> <td>Tipo</td> <td>Created</td> <td>Updated</td> </tr>";
+echo"<tr> <td>ID</td> <td>Nombre y Apellido</td><td>Tpo de respuesta</td> <td>Endpoint</td> <td>Created</td> </tr>";
  
 while($filaPDO=$ejecucionSQLPDO->fetch(PDO::FETCH_ASSOC)){
     echo "<tr>";
