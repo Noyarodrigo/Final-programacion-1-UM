@@ -1,13 +1,21 @@
 <?php
-//Conecto la base de datos
+if (session_start()) {
+    if ($_SESSION[habilitado]!=1 && $_SESSION[rol]!="admin") {
+      //a la casa a loguearse
+      header("location: http://localhost/prog1final/administracion/login.php");
+      die();
+    }
+  }
 $usuario="root";
-$clave="";
-$bd="programacioni";
+$clave="1234";
+$bd="transporte";
 $servidor="localhost";
-$conexionPDO= new PDO('mysql:host=localhost;dbname=programacioni;charset=UTF8','root','');
-$sql="delete FROM persona WHERE persona.id = :id";
+$conexionPDO= new PDO("mysql:host=$servidor;dbname=$bd;charset=UTF8","$usuario","$clave");
+
+$sql="delete FROM usuarios WHERE usuarios.usuario_id = :id";
 $ejecucionSQL= $conexionPDO->prepare($sql);
 $ejecucionSQL->bindValue(':id',$_GET['ide']);
 $ejecucionSQL ->execute($params);
-header("location: http://localhost/TP4/ej4.php");
+header("location: http://localhost/prog1final/administracion/panel_admin.php");
 
+?>

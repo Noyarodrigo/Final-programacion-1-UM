@@ -1,15 +1,22 @@
 <?php
-//Conecto la base de datos
-$usuario="root";
-$clave="";
-$bd="programacioni";
-$servidor="localhost";
+if (session_start()) {
+    if ($_SESSION[habilitado]!=1 && $_SESSION[rol]!="admin") {
+      //a la casa a loguearse
+      header("location: http://localhost/prog1final/administracion/login.php");
+      die();
+    }
+  }
 
-$conexionPDO= new PDO('mysql:host=localhost;dbname=programacioni;charset=UTF8','root','');
-$sql="insert into usuario (usuario,clave,habilitado,rol) values (:usu,:cla,:hab,:rol)";
+$usuario="root";
+$clave="1234";
+$bd="transporte";
+$servidor="localhost";
+$conexionPDO= new PDO("mysql:host=$servidor;dbname=$bd;charset=UTF8","$usuario","$clave");
+
+$sql="insert into usuarios (nombre,apellido,clave,tipo,created) values (:usu,:ape,:cla,:tipo,:created)";
 
 $ejecucionSQL= $conexionPDO->prepare($sql);
-$params=array('usu' => $_POST['usu'], 'cla' => $_POST['cla'], 'hab' => 1, 'rol' => "usuario");
+$params=array('usu' => $_POST['usu'],'ape' => $_POST['ape'], 'cla' => $_POST['cla'],'tipo' => "usuario", 'created'=> date('Y-m-d H:i:s'));
 $ejecucionSQL ->execute($params);
-header("location: http://localhost/panel_admin.php"); ̣// aca poner ruta a panel de adm usuario
-
+header("location: http://localhost/prog1final/administracion/panel_admin.php");
+?>

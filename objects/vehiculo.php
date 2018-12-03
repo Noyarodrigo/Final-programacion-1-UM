@@ -1,13 +1,10 @@
 <?php
 class Vehiculo{
 
-    // Connection instance
     private $connection;
 
-    // table name
     private $table_name = "vehiculo";
 
-    //columns
     public $vehiculo_id;
     public $patente;
     public $anho_patente;

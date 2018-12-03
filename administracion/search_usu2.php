@@ -5,18 +5,25 @@ if (session_start()) {
       header("location: http://localhost/prog1final/administracion/login.php");
       die();
     }
-  }
-$usuario="root";
-$clave="1234";
-$bd="transporte";
-$servidor="localhost";
-$conexionPDO= new PDO("mysql:host=$servidor;dbname=$bd;charset=UTF8","$usuario","$clave");
-
-$sql="select usuario_id, nombre, apellido, tipo, created, updated from usuarios";
+}
+ $usuario="root";
+ $clave="1234";
+ $bd="transporte";
+ $servidor="localhost";
+ $conexionPDO= new PDO("mysql:host=$servidor;dbname=$bd;charset=UTF8","$usuario","$clave");
+ 
+ $sql=" select usuario_id, nombre, apellido, tipo, created, updated from usuarios
+        WHERE
+            nombre LIKE :nom OR apellido LIKE :ape
+        ORDER BY
+            created DESC";
+        
+$ejecucionSQLPDO=$conexionPDO->prepare($sql);
+$ejecucionSQLPDO->bindValue(':nom',$_POST['buscar']);
+$ejecucionSQLPDO->bindValue(':ape',$_POST['buscar']);
+$ejecucionSQLPDO->execute();
 
 echo "<div> Usuarios </div>";
-$ejecucionSQLPDO=$conexionPDO->prepare($sql);
-$ejecucionSQLPDO->execute();
 echo "<table border='1'>";
 echo"<tr> <td>ID</td> <td>Nombre</td> <td>Apellido</td> <td>Tipo</td> <td>Created</td> <td>Updated</td> </tr>";
  
@@ -30,4 +37,3 @@ while($filaPDO=$ejecucionSQLPDO->fetch(PDO::FETCH_ASSOC)){
 echo "</table> ";
 
 ?>
-
