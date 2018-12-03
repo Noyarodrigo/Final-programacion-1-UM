@@ -6,7 +6,6 @@ if (session_start()) {
       die();
     }
   }
-
 $usuario="root";
 $clave="1234";
 $bd="transporte";
@@ -16,7 +15,7 @@ $conexionPDO= new PDO("mysql:host=$servidor;dbname=$bd;charset=UTF8","$usuario",
 $sql="insert into usuarios (nombre,apellido,clave,tipo,created) values (:usu,:ape,:cla,:tipo,:created)";
 
 $ejecucionSQL= $conexionPDO->prepare($sql);
-$params=array('usu' => $_POST['usu'],'ape' => $_POST['ape'], 'cla' => $_POST['cla'],'tipo' => "usuario", 'created'=> date('Y-m-d H:i:s'));
+$params=array('usu' => $_POST['nom'],'ape' => $_POST['ape'], 'cla' => $_POST['cla'],'tipo' => "admin", 'created'=> date('Y-m-d H:i:s'));
 $ejecucionSQL ->execute($params);
 header("location: http://localhost/prog1final/administracion/panel_admin.php");
 ?>
