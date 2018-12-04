@@ -58,7 +58,7 @@
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Login
+							Agregar
 						</button>
 					</div>
 
