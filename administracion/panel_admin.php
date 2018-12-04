@@ -1,3 +1,13 @@
+<?php
+if (session_start()) {
+    if ($_SESSION[habilitado]!=1 && $_SESSION[rol]!="admin") {
+      //a la casa a loguearse
+      header("location: http://localhost/prog1final/administracion/login.php");
+      die();
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,15 +32,15 @@
 <!--===============================================================================================-->
 </head>
 <body>
-<?php
-if (session_start()) {
-    if ($_SESSION[habilitado]!=1 && $_SESSION[rol]!="admin") {
-      //a la casa a loguearse
-      header("location: http://localhost/prog1final/administracion/login.php");
-      die();
-    }
-  }
-?>
+<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 row justify-content-center align-items-center">
+				
+				<form action="add_usu2.php" class="login100-form validate-form" method="post">
+					<span class="login100-form-title">
+						Agregar usuario
+					</span>
+
 <html>
 <head>
     <meta charset="UTF-8">
