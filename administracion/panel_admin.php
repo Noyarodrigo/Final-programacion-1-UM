@@ -18,7 +18,6 @@ if (session_start()) {
   <div>
     <a href="list_usu.php" class="btn btn-success">Listar</a>
     <a href="search_usu.php" class="btn btn-success">Buscar</a>
-    <a href="list_usu.php" class="btn btn-success">Listar</a>
     <a href="edit_usu.php" class="btn btn-success">Editar</a>
     <a href="add_usu.php" class="btn btn-success">Agregar</a>
     <a href="del_usu.php" class="btn btn-success">Eliminar</a>

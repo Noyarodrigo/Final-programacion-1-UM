@@ -1,3 +1,4 @@
+
 <?php
 if (session_start()) {
     if ($_SESSION[habilitado]!=1 && $_SESSION[rol]!="admin") {
