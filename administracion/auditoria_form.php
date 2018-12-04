@@ -27,30 +27,24 @@
 		<div class="container-login100">
 			<div class="wrap-login100 row justify-content-center align-items-center">
 				
-				<form action="add_usu2.php" class="login100-form validate-form" method="post">
+				<form action="auditoria_listar.php" class="login100-form validate-form" method="post">
 					<span class="login100-form-title">
 						Ingrese las fechas o dejelas vacias para mostrar todo
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Debe ingresar su apellido">
-						<input class="input100" type="text" name="ape" placeholder="Apellido">
+				    <div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="fi" placeholder="Fecha inicial">
 						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Ingrese su contraseña">
-						<input class="input100" type="password" name="cla" placeholder="Contraseña">
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="ff" placeholder="Ficha final">
 						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
 					</div>
 					
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
-							Agregar
+							Siguiente
 						</button>
 					</div>
 
