@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Listar</title>
+	<title>Editar</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -22,7 +22,8 @@
 <!--===============================================================================================-->
 </head>
 <body>
-<div class="limiter">
+	
+	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 row justify-content-center align-items-center">
                 <span class="login100-form-title">
@@ -38,36 +39,30 @@
                             <th scope="col">Tipo</th>
                             <th scope="col">Created</th>
                             <th scope="col">Updated</th>
+                            <th scope="col">Modificar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        if (session_start()) {
-                            if ($_SESSION[habilitado]!=1 && $_SESSION[rol]!="admin") {
-                            //a la casa a loguearse
-                            header("location: http://localhost/prog1final/administracion/login.php");
-                            die();
-                            }
-                        }
-                        $usuario="root";
-                        $clave="1234";
-                        $bd="transporte";
-                        $servidor="localhost";
-                        $conexionPDO= new PDO("mysql:host=$servidor;dbname=$bd;charset=UTF8","$usuario","$clave");
-
-                        $sql="select usuario_id, nombre, apellido, tipo, created, updated from usuarios";
-
-                        $ejecucionSQLPDO=$conexionPDO->prepare($sql);
-                        $ejecucionSQLPDO->execute();
-                       
-                        while($filaPDO=$ejecucionSQLPDO->fetch(PDO::FETCH_ASSOC)){
+                            $usuario="root";
+                            $clave="1234";
+                            $bd="transporte";
+                            $servidor="localhost";
+                            $conexionPDO= new PDO("mysql:host=$servidor;dbname=$bd;charset=UTF8","$usuario","$clave");
+                            
+                            $sql="select usuario_id, nombre, apellido, tipo, created, updated from usuarios";
+                            
+                            $ejecucionSQLPDO=$conexionPDO->prepare($sql);
+                            $ejecucionSQLPDO->execute();                
+                            
+                            while($filaPDO=$ejecucionSQLPDO->fetch(PDO::FETCH_ASSOC)){
                             echo "<tr>";
                             foreach ($filaPDO as $campoPDO){
                                 echo "<td>$campoPDO</td>";
                             }
+                            echo " <td align='center'><a href='edit_usu2.php?ide={$filaPDO['usuario_id']}'>X</a></td>";
                             echo "</tr>";
                         }
-
                         ?>
                     </tbody>
                 </table>
@@ -76,3 +71,4 @@
     </div>
 </body>
 </html>
+

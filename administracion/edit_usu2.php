@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Buscar</title>
+	<title>Editar</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -22,36 +22,53 @@
 <!--===============================================================================================-->
 </head>
 <body>
-<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 row justify-content-center align-items-center">
-				
-				<form action="search_usu2.php" class="login100-form validate-form" method="post">
-					<span class="login100-form-title">
-						Buscar usuario
-					</span>
+  <div class="limiter">
+      <div class="container-login100">
+        <div class="wrap-login100 row justify-content-center align-items-center">
+          <?php
+            if ($_GET['ide']="") {
+              echo "<span class=\"login100-form-title\">Error, no ha seleccionado un usuario para modificar</span>";
+              die();
+            }
+         
+          ?>
+				<form action="edit_usu3.php" class="login100-form validate-form" method="post">
+          <span class="login100-form-title">
+            Modificar Usuario
+          </span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Debe ingresar su nombre">
-						<input class="input100" type="text" name="buscar" placeholder="Nombre">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
-						</span>
-                    </div>
-                    <div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Buscar
-						</button>
-					</div>
+          <input class="input100" type="text" name="nom" value="<?php echo $nombre;?>">
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </span>
+        </div>
 
-				</form>
+        <div class="wrap-input100 validate-input" data-validate = "Debe ingresar su apellido">
+          <input class="input100" type="text" name="ape" value="<?php echo $apellido;?>">
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+          </span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Ingrese su contraseña">
+          <input class="input100" type="password" name="cla" value="<?php echo $clave;?>">
+          <span class="focus-input100"></span>
+          <span class="symbol-input100">
+            <i class="fa fa-lock" aria-hidden="true"></i>
+          </span>
+        </div>
+        
+        <div class="container-login100-form-btn">
+          <button class="login100-form-btn">
+            Modificar
+          </button>
+        </div>
 			</div>
 		</div>
 	</div>
-	
-	
-
-	
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
