@@ -71,7 +71,6 @@
 
                         $path="registro.txt";
                         $archivo=fopen($path,'w');
-
                         $i=0;
 
                         while($filaPDO=$ejecucionSQLPDO->fetch(PDO::FETCH_ASSOC)){

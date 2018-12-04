@@ -32,7 +32,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Debe ingresar su nombre">
-						<input class="input100" type="text" name="buscar" placeholder="Nombre">
+						<input class="input100" type="text" name="buscar" placeholder="Nombre o apellido">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>

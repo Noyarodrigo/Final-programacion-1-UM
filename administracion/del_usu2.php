@@ -3,7 +3,7 @@
 if (session_start()) {
     if ($_SESSION[habilitado]!=1 && $_SESSION[rol]!="admin") {
       //a la casa a loguearse
-      header("location: http://localhost/prog1final/administracion/login.php");
+      header("location: http://localhost/prog1final/administracion/login/index.html");		
       die();
     }
   }

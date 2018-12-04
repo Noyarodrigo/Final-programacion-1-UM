@@ -2,7 +2,7 @@
 if (session_start()) {
     if ($_SESSION[habilitado]!=1 && $_SESSION[rol]!="admin") {
       //a la casa a loguearse
-      header("location: http://localhost/prog1final/administracion/login.php");
+      header("location: http://localhost/prog1final/administracion/login/index.html");
       die();
     }
   }
@@ -11,7 +11,7 @@ if (session_start()) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Auditoria</title>
+	<title>Panel Adm</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -33,34 +33,73 @@ if (session_start()) {
 </head>
 <body>
 <div class="limiter">
+    <span >
+      <button class="login100-form-btn" onclick = "location='logout.php'">
+        Cerrar sesion
+      </button>
+    </span>
 		<div class="container-login100">
 			<div class="wrap-login100 row justify-content-center align-items-center">
-				
-				<form action="add_usu2.php" class="login100-form validate-form" method="post">
 					<span class="login100-form-title">
-						Agregar usuario
+            USUARIO
 					</span>
+          <div class="container-login100-form-btn">
+          <span >
+            <button class="login100-form-btn" onclick = "location='list_usu.php'">
+							Listar
+						</button>
+					</span>
+          <span >
+            <button class="login100-form-btn " onclick = "location='search_usu.php'">
+							Buscar
+						</button>
+					</span>
+          <span>
+            <button class="login100-form-btn"onclick = "location='edit_usu.php'">
+							Editar
+						</button>
+					</span>
+          <span>
+            <button class="login100-form-btn" onclick = "location='add_usu.php'">
+							Agregar
+						</button>
+					</span>
+          <span>
+            <button class="login100-form-btn" onclick = "location='del_usu.php'">
+							Eliminar
+						</button>
+					</span>
+			<div class="wrap-login100 row justify-content-center align-items-center">
+					<span class="login100-form-title" >
+            AUDITORIA
+					</span>
+          <div class="container-login100-form-btn">
+          <span >
+            <button class="login100-form-btn" onclick = "location='auditoria_form.php'">
+							Mostar
+						</button>
+					</span>
+          </div>
+        </div>
+		</div>
+	</div>
+	
+<!--===============================================================================================-->	
+<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Panel de Usuarios</title>
-</head>
-<body>
-  <!--usuario-->
-  <h2>Usuarios</h2>
-  <div>
-    <a href="list_usu.php" class="btn btn-success">Listar</a>
-    <a href="search_usu.php" class="btn btn-success">Buscar</a>
-    <a href="edit_usu.php" class="btn btn-success">Editar</a>
-    <a href="add_usu.php" class="btn btn-success">Agregar</a>
-    <a href="del_usu.php" class="btn btn-success">Eliminar</a>
-    <a href="logout.php" class="btn btn-success">Cerrar sesion</a>
-  </div>
-  <!--Auditoria-->
-  <div>
-    <h2>Auditoria</h2>
-    <a href="auditoria_form.php" class="btn btn-success">Ver Auditoria</a>
-  </div>
 </body>
 </html>
