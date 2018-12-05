@@ -69,3 +69,5 @@
 69,roi noya,1,localhost/prog1final/chofer/search.php,2018-12-04 20:40:38
 70,roi noya,2,localhost/prog1final/chofer/search.php,2018-12-04 20:40:45
 71,roi noya,2,localhost/prog1final/chofer/search.php,2018-12-04 20:40:54
+72,Ignacio Noya,2,localhost/prog1final/chofer/read.php,2018-12-05 11:06:57
+73,roi noya,2,localhost/prog1final/chofer/read.php,2018-12-05 11:07:18

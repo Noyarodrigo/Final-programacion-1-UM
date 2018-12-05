@@ -30,7 +30,7 @@
 					<span class="login100-form-title">
 						Buscar usuario
 					</span>
-
+					
 					<div class="wrap-input100 validate-input" data-validate = "Debe ingresar su nombre">
 						<input class="input100" type="text" name="buscar" placeholder="Nombre o apellido">
 						<span class="focus-input100"></span>
@@ -43,12 +43,16 @@
 							Buscar
 						</button>
 					</div>
-
+					
+					<br>
+					<span class="row justify-content-center align-items-center" >
+							<a href="panel_admin.php">Volver</a>
+					</span>
 				</form>
+				
 			</div>
 		</div>
 	</div>
-	
 	
 
 	

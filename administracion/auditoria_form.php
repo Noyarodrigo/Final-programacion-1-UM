@@ -47,7 +47,10 @@
 							Siguiente
 						</button>
 					</div>
-
+					<br>
+					<span class="row justify-content-center align-items-center" >
+							<a href="panel_admin.php">Volver</a>
+					</span>
 				</form>
 			</div>
 		</div>

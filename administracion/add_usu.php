@@ -49,7 +49,7 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Ingrese su contraseña">
-						<input class="input100" type="password" name="cla" placeholder="Contraseña">
+						<input class="input100" type="text" name="cla" placeholder="Contraseña">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -61,7 +61,10 @@
 							Agregar
 						</button>
 					</div>
-
+					<br>
+					<span class="row justify-content-center align-items-center" >
+							<a href="panel_admin.php">Volver</a>
+					</span>
 				</form>
 			</div>
 		</div>

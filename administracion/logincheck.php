@@ -24,8 +24,7 @@
   //pido la fila, sólo va a devolver algo si pudo pedirlo de la tabla asi que no hace falta comprobar nada, si no está bien usuario y contra creo que devuleve vacio o no devuelve
   //en cuyo caso habria que hacer algo como empty($filaPDO);
   if (empty($filaPDO=$ejecucionSQL->fetch(PDO::FETCH_ASSOC))) {
-    echo "<h3>Usuario o contraseña inválida</h3>";
-    echo "<br><h4><a href='login.php'>VOLVER</a> </h4>";
+    header("location: http://localhost/prog1final/administracion/login/index.html");
     die();
   }
   //si se llega a este punto es porque si devolvio algo la consulta entonces está bien el usuario y contraseña

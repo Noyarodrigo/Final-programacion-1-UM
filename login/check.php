@@ -20,8 +20,15 @@ $db = $database->getConnection();
 
 $login = new Login($db);
 
-$login->nombre = isset($_POST['nombre']) ? $_POST['nombre'] : die();
-$login->clave = isset($_POST['password']) ? $_POST['password'] : die();
+if ($_SERVER['REQUEST_METHOD'] !=  "GET"){
+    die();
+}
+
+$data = json_decode(file_get_contents("php://input"));
+
+$login->nom = $data->nombre;
+$login->cla = $data->password;
+
 $login->check();
 
 if($login->nombre!=null && $login->tipo!=null){
@@ -40,7 +47,7 @@ if($login->nombre!=null && $login->tipo!=null){
      http_response_code(200);
      //jwt
     $jwt = JWT::encode($token, $key);
-    echo "Su token de ingreso es: $jwt";    
+    echo json_encode(array("jwt" => "$jwt"));
 }
  
 else{
@@ -48,4 +55,5 @@ else{
     http_response_code(401);
     echo json_encode(array("message" => "No se pudo iniciar sesion."));
 }
+
 ?>

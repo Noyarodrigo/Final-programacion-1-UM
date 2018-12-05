@@ -71,6 +71,10 @@
                         ?>
                     </tbody>
                 </table>
+                <br>
+                <span class="row justify-content-center align-items-center" >
+							<a href="panel_admin.php">Volver</a>
+					</span>
             </div>
         </div>
     </div>

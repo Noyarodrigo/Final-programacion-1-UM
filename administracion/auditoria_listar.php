@@ -23,11 +23,14 @@
 </head>
 <body>
 <div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 row justify-content-center align-items-center">
-                <span class="login100-form-title">
-                   Auditoria
-                </span>
+    <div class="container-login100">
+        <div class="wrap-login100 row justify-content-center align-items-center">
+            <span class="login100-form-title">
+                Auditoria
+            </span>
+            <span class="row justify-content-center align-items-center" >
+                    <a href="panel_admin.php">Volver</a>
+            </span>
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
@@ -96,7 +99,8 @@
                                 Descargar
                             </button>
                     </div>
-            </div>
+                    </form>
+                </div>
         </div>
     </div>
 </body>

@@ -1,3 +1,31 @@
+<?php  
+
+if (session_start()) {
+  if ($_SESSION[habilitado]!=1 && $_SESSION[rol]!="admin") {
+    //a la casa a loguearse
+    header("location: http://localhost/prog1final/administracion/login/index.html");		
+    die();
+  }
+}
+
+$usuario="root";
+$clave="1234";
+$bd="transporte";
+$servidor="localhost";
+$conexionPDO= new PDO("mysql:host=$servidor;dbname=$bd;charset=UTF8","$usuario","$clave");
+
+$sql="select usuario_id, nombre, apellido, clave, tipo, created, updated from usuarios where usuario_id = {$_GET['ide']}";
+
+$ejecucionSQLPDO=$conexionPDO->prepare($sql);
+$ejecucionSQLPDO->execute();
+$filaPDO=$ejecucionSQLPDO->fetch(PDO::FETCH_ASSOC);
+
+$ide=$_GET['ide'];
+$nombre=$filaPDO['nombre'];
+$apellido=$filaPDO['apellido'];
+$clave=$filaPDO[clave];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,11 +58,13 @@
               echo "<span class=\"login100-form-title\">Error, no ha seleccionado un usuario para modificar</span>";
               die();
             }
-         
           ?>
 				<form action="edit_usu3.php" class="login100-form validate-form" method="post">
+          
+          <input type="hidden" name="ide" value="<?php echo $ide; ?>">  
+        
           <span class="login100-form-title">
-            Modificar Usuario
+              Modificar Usuario              
           </span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Debe ingresar su nombre">
@@ -54,7 +84,7 @@
         </div>
 
         <div class="wrap-input100 validate-input" data-validate = "Ingrese su contraseña">
-          <input class="input100" type="password" name="cla" value="<?php echo $clave;?>">
+          <input class="input100" type="text" name="cla" value="<?php echo $clave;?>">
           <span class="focus-input100"></span>
           <span class="symbol-input100">
             <i class="fa fa-lock" aria-hidden="true"></i>
