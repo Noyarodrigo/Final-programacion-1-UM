@@ -30,8 +30,8 @@
   //si se llega a este punto es porque si devolvio algo la consulta entonces está bien el usuario y contraseña
   if (session_start()){
     if ($filaPDO['tipo']!="admin") {
-      echo "<h3>Usted no es Admin</h3>";   
-      echo "<br><h4><a href='login.php'>VOLVER</a> </h4>";
+      session_destroy();
+      header("location: http://localhost/prog1final/administracion/login/index.html");
       die();  
     }
     $_SESSION[rol]=$filaPDO[rol];

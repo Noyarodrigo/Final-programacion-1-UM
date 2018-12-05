@@ -33,14 +33,22 @@ $sistema = new Sistema($db);
 
 //decodificar json y obtener el token
 $data = json_decode(file_get_contents("php://input"));
-$jwt=isset($data->jwt) ? $data->jwt : "";
+
+$token = null;
+$headers = apache_request_headers();
+
+if(isset($headers['Authorization'])){
+    $token=explode(" ", $headers['Authorization']);
+} 
+
+
 
 //si se envio token se trata de decodificar, si lo logra sigue en el try, si no salta al catch
-if($jwt){
+if($token[1]){
 
     try {
         //intenta decodificar
-        $decoded = JWT::decode($jwt, $key, array('HS256'));
+        $decoded = JWT::decode($token[1], $key, array('HS256'));
         //obtener datos del jwt
         $aux= get_object_vars($decoded);
         $usu= get_object_vars($aux[data]);        

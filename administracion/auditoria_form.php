@@ -41,7 +41,7 @@
 						<input class="input100" type="text" name="ff" placeholder="Ficha final">
 						<span class="focus-input100"></span>
 					</div>
-					
+
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Siguiente
