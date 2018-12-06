@@ -110,9 +110,7 @@ class Chofer{
         $this->updated = $fila['updated'];
         $this->patente = $fila['patente'];
         $this->servicio = $fila['servicio'];
-    /*creo que no haria falta mandar el id de el tipo de servicio porque ya le mando un campo servicio(que es el tipo de servicio ej Uber)
-    asi que habria que ver si necesitas ver el id o con que sepas que es uber ya está bien, lo mismo con el id del auto, como solo puede
-    manejar un auto directamente le estaba mandando la patente del auto que es mas comodo, pero tal vez necesite el id qcio.*/
+
     }
 
     function update(){
